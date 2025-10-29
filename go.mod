@@ -9,7 +9,7 @@ require (
 	github.com/stretchr/testify v1.11.1
 	go.etcd.io/bbolt v1.4.2
 	go.etcd.io/etcd/api/v3 v3.6.4
-	go.etcd.io/etcd/client/pkg/v3 v3.6.4
+	go.etcd.io/etcd/client/pkg/v3 v3.6.5
 	go.etcd.io/etcd/client/v3 v3.6.4
 	go.etcd.io/etcd/pkg/v3 v3.6.4
 	go.etcd.io/etcd/server/v3 v3.6.4
