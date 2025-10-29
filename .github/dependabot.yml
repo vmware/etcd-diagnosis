@@ -12,6 +12,10 @@ updates:
       interval: weekly
     allow:
       - dependency-type: direct
+    groups:
+      etcd:
+        patterns:
+          - "go.etcd.io/*"
 
   - package-ecosystem: gomod
     directory: /tools
