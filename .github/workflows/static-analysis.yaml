@@ -1,0 +1,12 @@
+name: Static Analysis
+on: [push, pull_request]
+jobs:
+  static-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'
+      - name: verify
+        run: make verify
