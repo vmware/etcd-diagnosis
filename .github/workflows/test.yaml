@@ -1,0 +1,42 @@
+name: test
+on: [push, pull_request]
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - unit-test-1-cpu
+          - unit-test-2-cpu
+          - unit-test-4-cpu
+          - unit-test-4-cpu-race
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'
+          check-latest: false
+      - name: Run test on ${{ matrix.target }}
+        env:
+          TARGET: ${{ matrix.target }}
+          TIMEOUT: 30m
+        run: |
+          case "${TARGET}" in
+            unit-test-1-cpu)
+              CPU=1 make test
+              ;;
+            unit-test-2-cpu)
+              CPU=2 make test
+              ;;
+            unit-test-4-cpu)
+              CPU=4 make test
+              ;;
+            unit-test-4-cpu-race)
+              CPU=4 ENABLE_RACE=true make test
+              ;;
+            *)
+              echo "Failed to find target"
+              exit 1
+              ;;
+          esac
