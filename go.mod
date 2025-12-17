@@ -2,7 +2,7 @@ module github.com/vmware/etcd-diagnosis
 
 go 1.24.0
 
-toolchain go1.24.9
+toolchain go1.24.11
 
 require (
 	github.com/prometheus/client_model v0.6.2
