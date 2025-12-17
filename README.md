@@ -31,7 +31,8 @@ Use "etcd-diagnosis [command] --help" for more information about a command.
 
 Note that `report` is the only online command that requires a running
 etcd cluster. All other commands are offline and should be executed only
-when all etcd instances are stopped.
+when all etcd instances are stopped. The tool is expected to be executed
+on one of the nodes hosting etcd.
 
 - Online commands
   - [report](#report)
