@@ -2,7 +2,7 @@ module github.com/vmware/etcd-diagnosis/tools
 
 go 1.24
 
-toolchain go1.24.5
+toolchain go1.24.11
 
 require github.com/golangci/golangci-lint v1.64.8
 
