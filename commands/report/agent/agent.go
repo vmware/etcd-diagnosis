@@ -5,6 +5,7 @@
 package agent
 
 import (
+	"bytes"
 	"crypto/tls"
 	"crypto/x509"
 	"fmt"
@@ -14,6 +15,9 @@ import (
 	"os"
 	"strings"
 
+	dto "github.com/prometheus/client_model/go"
+	"github.com/prometheus/common/expfmt"
+	"github.com/prometheus/common/model"
 	clientv3 "go.etcd.io/etcd/client/v3"
 )
 
@@ -81,7 +85,7 @@ func Read(gcfg GlobalConfig, eps []string, key string, options ...clientv3.OpOpt
 	return c.Get(ctx, key, options...)
 }
 
-func Metrics(gcfg GlobalConfig, ep string) ([]string, error) {
+func Metrics(gcfg GlobalConfig, ep string) (map[string]*dto.MetricFamily, error) {
 	if !strings.HasPrefix(ep, "http://") && !strings.HasPrefix(ep, "https://") {
 		ep = "http://" + ep
 	}
@@ -124,5 +128,6 @@ func Metrics(gcfg GlobalConfig, ep string) ([]string, error) {
 		return nil, fmt.Errorf("failed to read metrics response: %w", err)
 	}
 
-	return strings.Split(string(data), "\n"), nil
+	parser := expfmt.NewTextParser(model.LegacyValidation)
+	return parser.TextToMetricFamilies(bytes.NewReader(data))
 }
