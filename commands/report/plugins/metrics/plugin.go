@@ -21,6 +21,8 @@ var (
 	metricsNames = []string{
 		"etcd_disk_wal_fsync_duration_seconds",
 		"etcd_disk_backend_commit_duration_seconds",
+		"etcd_server_apply_duration_seconds",
+		"etcd_server_range_duration_seconds",
 		"etcd_network_peer_round_trip_time_seconds",
 		"process_resident_memory_bytes",
 		//"process_cpu_seconds_total",
