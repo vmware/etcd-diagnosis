@@ -5,7 +5,7 @@ function install_golangci_lint() {
     curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b "$(go env GOPATH)/bin" "${GOLANGCI_LINT_VERSION}"
 }
 
-GOLANGCI_LINT_VERSION=$(cd tools && go list -m -f '{{.Version}}' github.com/golangci/golangci-lint)
+GOLANGCI_LINT_VERSION=$(cd tools && go list -m -f '{{.Version}}' github.com/golangci/golangci-lint/v2)
 echo "golangci-lint version: $GOLANGCI_LINT_VERSION"
 GOLANGCI_LINT_PRESENT=$(which golangci-lint)
 
